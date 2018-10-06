@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <cstring>
 #include <vector>
@@ -6,44 +6,44 @@
 #include <cmath>
 #include <ctime>
 using namespace std;
-// §d«TÊã B043040044
+// å³ä¿Šå¿» B043040044
 // 2017/01/07
-// §@·~8  huffman
-struct ASCIfreq{                                    //ASCIfreq ¦s¯S©w¦r¤¸ÀW²v
-    unsigned char ASCI;                             //ASCIfreq.ASCI ¦r¤¸½s¸¹
-    int freq;                                       //ASCIfreq.freq ¦r¤¸ÀW²v
+// ä½œæ¥­8  huffman
+struct ASCIfreq{                                    //ASCIfreq å­˜ç‰¹å®šå­—å…ƒé »ç‡
+    unsigned char ASCI;                             //ASCIfreq.ASCI å­—å…ƒç·¨è™Ÿ
+    int freq;                                       //ASCIfreq.freq å­—å…ƒé »ç‡
 };
 
-class NODE{                                         //NODE ¥Î©ó«Øhuffman tree
+class NODE{                                         //NODE ç”¨æ–¼å»ºhuffman tree
 public:
     NODE ();
     NODE(ASCIfreq t);
-    void adjust();                                  //­pºâ¸Ó¸`ÂIÀW²v
+    void adjust();                                  //è¨ˆç®—è©²ç¯€é»é »ç‡
 
-    unsigned char ASCI;                             //NODE.ASCI¸Ó¸`ÂI¦r¤¸½s¸¹
-    int freq;                                       //NODE.freq ¸Ó¸`ÂIÀW²v
-    int data_freq;                                  //NODE.data_freq ¸Ó¸`ÂI¦r¤¸ÀW²v
-    NODE* right;                                    //NODE.right «ü¦V¥k¤l¾ğ¸`ÂI
-    NODE* left;                                     //NODE.left «ü¦V¥ª¤l¾ğ¸`ÂI
+    unsigned char ASCI;                             //NODE.ASCIè©²ç¯€é»å­—å…ƒç·¨è™Ÿ
+    int freq;                                       //NODE.freq è©²ç¯€é»é »ç‡
+    int data_freq;                                  //NODE.data_freq è©²ç¯€é»å­—å…ƒé »ç‡
+    NODE* right;                                    //NODE.right æŒ‡å‘å³å­æ¨¹ç¯€é»
+    NODE* left;                                     //NODE.left æŒ‡å‘å·¦å­æ¨¹ç¯€é»
 };
 
-void C(fstream& in,fstream& out);                   //C() À£ÁY®É
-void list_freq(vector<ASCIfreq>& inlist,ASCIfreq input);        //list_freq()¦C¥XÀW²vªí¨Ã±Æ§Ç
-NODE* Huffman(string* codelist,vector<ASCIfreq>& inputlist);    //Huffman() »s§@huffman¾ğ
-void swap_LR(NODE** left,NODE** right);                         //swap_LR() ¤l¾ğ¥ª¥k¹ï±¼
-void Huff_sort(vector<NODE*>& trees);                           //Huffman() »s§@huffman¾ğ ¸`ÂI±Æ§Ç
-int Huff_list(string* codelist,int& num,string code,NODE* root);//Huff_list() ¿é¥X½s½Xªí
-int list_cmp (const void * a, const void * b);                  //list_cmp() ±Æ§Ç½s½Xªí¥Î
-int compression(const string* codelist,const int list_size,fstream& in,string& out_file);//compression() À£ÁYÀÉ®×¤º®e
+void C(fstream& in,fstream& out);                   //C() å£“ç¸®æ™‚
+void list_freq(vector<ASCIfreq>& inlist,ASCIfreq input);        //list_freq()åˆ—å‡ºé »ç‡è¡¨ä¸¦æ’åº
+NODE* Huffman(string* codelist,vector<ASCIfreq>& inputlist);    //Huffman() è£½ä½œhuffmanæ¨¹
+void swap_LR(NODE** left,NODE** right);                         //swap_LR() å­æ¨¹å·¦å³å°æ‰
+void Huff_sort(vector<NODE*>& trees);                           //Huffman() è£½ä½œhuffmanæ¨¹ ç¯€é»æ’åº
+int Huff_list(string* codelist,int& num,string code,NODE* root);//Huff_list() è¼¸å‡ºç·¨ç¢¼è¡¨
+int list_cmp (const void * a, const void * b);                  //list_cmp() æ’åºç·¨ç¢¼è¡¨ç”¨
+int compression(const string* codelist,const int list_size,fstream& in,string& out_file);//compression() å£“ç¸®æª”æ¡ˆå…§å®¹
 
 
-void burn(NODE*);                                               //burn()±N¾ğ²M°£
+void burn(NODE*);                                               //burn()å°‡æ¨¹æ¸…é™¤
 
-void U(fstream& in,fstream& out);                   //U() ¸ÑÀ£ÁY®É
-void build_tree_path(NODE** r_root,char i);                     //build_tree_path() «Ø¥ßhuffman¾ğ
-void build_tree_edge(NODE* root,int i);                         //build_tree_path() «Ø¥ßhuffman¾ğ
-void Decompression(NODE* tree,fstream& in,fstream& out,int bits);//Decompression() ¸ÑÀ£ÁYÀÉ®×¤º®e
-int char_search(NODE** r_root,char code_bit);                   //char_search() ±q¾ğ¤¤¿é¥X¦r¤¸
+void U(fstream& in,fstream& out);                   //U() è§£å£“ç¸®æ™‚
+void build_tree_path(NODE** r_root,char i);                     //build_tree_path() å»ºç«‹huffmanæ¨¹
+void build_tree_edge(NODE* root,int i);                         //build_tree_path() å»ºç«‹huffmanæ¨¹
+void Decompression(NODE* tree,fstream& in,fstream& out,int bits);//Decompression() è§£å£“ç¸®æª”æ¡ˆå…§å®¹
+int char_search(NODE** r_root,char code_bit);                   //char_search() å¾æ¨¹ä¸­è¼¸å‡ºå­—å…ƒ
 
 int main(int argc,char* argv[]){
     if (argc<5){
@@ -51,8 +51,8 @@ int main(int argc,char* argv[]){
         return 0;
     }
     double start = clock();
-    fstream fin;                                                //fin ÀÉ®×¿é¤J
-    fstream fout;                                               //fout ¿é¥XÀÉ®×
+    fstream fin;                                                //fin æª”æ¡ˆè¼¸å…¥
+    fstream fout;                                               //fout è¼¸å‡ºæª”æ¡ˆ
 
     if(strcmp(argv[2],"-i")==0 && strcmp(argv[4],"-o")==0){
         fin.open(argv[3], ios::in |ios::binary);
@@ -76,9 +76,9 @@ int main(int argc,char* argv[]){
         return 0;
     }
 
-    if (strcmp(argv[1],"-u")==0)                               //¸ÑÀ£
+    if (strcmp(argv[1],"-u")==0)                               //è§£å£“
         U(fin,fout);
-    else if(strcmp(argv[1],"-c")==0)                           //À£ÁY
+    else if(strcmp(argv[1],"-c")==0)                           //å£“ç¸®
         C(fin,fout);
     else{
         cout << "argv[1] error" << endl;
@@ -115,23 +115,23 @@ void NODE::adjust(){
 }
 
 /*----------------------------------------main----------------------------------------*/
-/*---------------------------------------À£ÁY--------------------------------------*/
-void C(fstream& in,fstream& out){                           //in¬°¿é¤JÀÉ, out¿é¥XÀÉ
-    int in_byte=0,out_byte=0;                               //in_byte,out_byte­pºâ¿é¤J¿é¥XÀÉ®×ªº¤j¤p
-    int frequence[256];                                     //frequence¦s¦U¦r¤¸¥X²{ÀW²v
-    vector<ASCIfreq> ASCIlist;                              //ASCIlist ¦s¦r¤¸ÀW²vªí
+/*---------------------------------------å£“ç¸®--------------------------------------*/
+void C(fstream& in,fstream& out){                           //inç‚ºè¼¸å…¥æª”, outè¼¸å‡ºæª”
+    int in_byte=0,out_byte=0;                               //in_byte,out_byteè¨ˆç®—è¼¸å…¥è¼¸å‡ºæª”æ¡ˆçš„å¤§å°
+    int frequence[256];                                     //frequenceå­˜å„å­—å…ƒå‡ºç¾é »ç‡
+    vector<ASCIfreq> ASCIlist;                              //ASCIlist å­˜å­—å…ƒé »ç‡è¡¨
 
     for(int i=0;i<256;i++)
         frequence[i]=0;
-    char tt;                                                //tt ¿é¤J¥Î¼È¦s¦r¤¸
-    unsigned char target_char;                              //target_char ¥Ø¼Ğ¦r¤¸
-    while(!in.eof() && in.get(tt)){         //¥­²v²Î­p
+    char tt;                                                //tt è¼¸å…¥ç”¨æš«å­˜å­—å…ƒ
+    unsigned char target_char;                              //target_char ç›®æ¨™å­—å…ƒ
+    while(!in.eof() && in.get(tt)){         //å¹³ç‡çµ±è¨ˆ
         target_char=(unsigned char)tt;
         in_byte++;
         frequence[target_char]++;
     }
 
-    for (int i=0;i<256;i++){                //ÀW²v±Æ§Ç
+    for (int i=0;i<256;i++){                //é »ç‡æ’åº
         if(frequence[i]){
             ASCIfreq t;
             t.ASCI=i;
@@ -139,20 +139,20 @@ void C(fstream& in,fstream& out){                           //in¬°¿é¤JÀÉ, out¿é¥
             list_freq(ASCIlist,t);
         }
     }
-    string codelist[ASCIlist.size()];                       //codelist ¦s½s½Xªí
-    NODE* Huffman_tree;                                     //Huffman_tree «ü¦Vhuffman¾ğ
-    Huffman_tree=Huffman(codelist,ASCIlist);             //«Ø¥ß½s½Xªí©ócodelist
+    string codelist[ASCIlist.size()];                       //codelist å­˜ç·¨ç¢¼è¡¨
+    NODE* Huffman_tree;                                     //Huffman_tree æŒ‡å‘huffmanæ¨¹
+    Huffman_tree=Huffman(codelist,ASCIlist);             //å»ºç«‹ç·¨ç¢¼è¡¨æ–¼codelist
 
-    in.clear();                                          //²M²zÀÉ®×¿é¤J¸ê°T
-    in.seekg(0,ios::beg);                                //¦^¿é¤JªºÀÉ®×¶}ÀY
+    in.clear();                                          //æ¸…ç†æª”æ¡ˆè¼¸å…¥è³‡è¨Š
+    in.seekg(0,ios::beg);                                //å›è¼¸å…¥çš„æª”æ¡ˆé–‹é ­
 
-    string out_file;                                        //out_file ¦s©ñÀ£ÁY§¹ªº¤º®e
-    int bits;                                               //bits ¦s­ì©l½s½Xbit¼Æ
+    string out_file;                                        //out_file å­˜æ”¾å£“ç¸®å®Œçš„å…§å®¹
+    int bits;                                               //bits å­˜åŸå§‹ç·¨ç¢¼bitæ•¸
     bits = compression(codelist,ASCIlist.size(),in,out_file);
 
     out << bits;
 
-    for(int i=0;i<ASCIlist.size();i++){     //½s½Xªí¼g¤J¶}ÀY
+    for(int i=0;i<ASCIlist.size();i++){     //ç·¨ç¢¼è¡¨å¯«å…¥é–‹é ­
         out<<('=');
         out<<((unsigned char)codelist[i][0]);
         out_byte+=2;
@@ -162,10 +162,10 @@ void C(fstream& in,fstream& out){                           //in¬°¿é¤JÀÉ, out¿é¥
         }
     }
     out_byte+=out_file.length();
-    double rate_compression = (double)out_byte/(double)in_byte;//rate_compression ­pºâÀ£ÁY²v
-    cout << "À£ÁY«e:" << in_byte << " bytes" << endl;
-    cout << "À£ÁY«á:" << out_byte << " bytes" << endl;
-    cout << "À£ÁY²v:" << rate_compression << endl;
+    double rate_compression = (double)out_byte/(double)in_byte;//rate_compression è¨ˆç®—å£“ç¸®ç‡
+    cout << "å£“ç¸®å‰:" << in_byte << " bytes" << endl;
+    cout << "å£“ç¸®å¾Œ:" << out_byte << " bytes" << endl;
+    cout << "å£“ç¸®ç‡:" << rate_compression << endl;
     out <<'#' << in_byte << '/' << out_byte << '/' <<rate_compression << '#';
 
     for(int i=0;i<out_file.length();i++)
@@ -174,7 +174,7 @@ void C(fstream& in,fstream& out){                           //in¬°¿é¤JÀÉ, out¿é¥
     burn(Huffman_tree);
 }
 
-void list_freq(vector<ASCIfreq>& inlist ,ASCIfreq input){//»s§@ÀW²vªí inlistÀW²vªí ,input ·s¼W¦r¤¸ÀW²v
+void list_freq(vector<ASCIfreq>& inlist ,ASCIfreq input){//è£½ä½œé »ç‡è¡¨ inlisté »ç‡è¡¨ ,input æ–°å¢å­—å…ƒé »ç‡
     int i;
     for(i=0;i<inlist.size();i++){
         if ((inlist.at(i)).freq > input.freq){
@@ -184,56 +184,56 @@ void list_freq(vector<ASCIfreq>& inlist ,ASCIfreq input){//»s§@ÀW²vªí inlistÀW²v
     inlist.insert(inlist.begin()+i,input);
 }
 
-NODE* Huffman(string* codelist,vector<ASCIfreq>& inputlist){//codelist¬°½s½Xªí inputlist ÀW²vªí
-    vector<NODE*> trees;                                    //trees ¦s©ñhuffman¾ğ¤Î¸`ÂI
+NODE* Huffman(string* codelist,vector<ASCIfreq>& inputlist){//codelistç‚ºç·¨ç¢¼è¡¨ inputlist é »ç‡è¡¨
+    vector<NODE*> trees;                                    //trees å­˜æ”¾huffmanæ¨¹åŠç¯€é»
     for(int i=0;i<inputlist.size();i++){
         NODE * tree=new NODE (inputlist.at(i));
         trees.push_back(tree);
     }
-    if (trees.size()==1){                               //·í¿é¤JÀÉ®×¶È¦³¤@ºØ¦r¤¸
+    if (trees.size()==1){                               //ç•¶è¼¸å…¥æª”æ¡ˆåƒ…æœ‰ä¸€ç¨®å­—å…ƒ
         NODE* ntree=new NODE;
         (*ntree).left=trees.at(0);
         trees.at(0)=(*ntree).left;
     }
-    while(trees.size()>1){                              //«ùÄò¦X¨Ö¸`ÂI ¦Ü¶È³Ñ¤@¾ğ
-        NODE* ntree=new NODE;                               //ntree«ü¦V¦X¨Ö¥Xªº·s¾ğ
-        unsigned char ASCI_1=(*(trees.at(0))).ASCI;         //ASCI_1¼È¦s¥ª¤l¾ğ¦r¤¸½s¸¹
-        unsigned char ASCI_2=(*(trees.at(1))).ASCI;         //ASCI_2¼È¦s¥k¤l¾ğ¦r¤¸½s¸¹
+    while(trees.size()>1){                              //æŒçºŒåˆä½µç¯€é» è‡³åƒ…å‰©ä¸€æ¨¹
+        NODE* ntree=new NODE;                               //ntreeæŒ‡å‘åˆä½µå‡ºçš„æ–°æ¨¹
+        unsigned char ASCI_1=(*(trees.at(0))).ASCI;         //ASCI_1æš«å­˜å·¦å­æ¨¹å­—å…ƒç·¨è™Ÿ
+        unsigned char ASCI_2=(*(trees.at(1))).ASCI;         //ASCI_2æš«å­˜å³å­æ¨¹å­—å…ƒç·¨è™Ÿ
         (*ntree).left=trees.at(0);
         (*ntree).right=trees.at(1);
 
-        if(ASCI_1 < ASCI_2){                                //·s¸`ÂI¦r¤¸½s¸¹ ¬°ASCI_1,ASCI_2¤¤¸û¤pªÌ
+        if(ASCI_1 < ASCI_2){                                //æ–°ç¯€é»å­—å…ƒç·¨è™Ÿ ç‚ºASCI_1,ASCI_2ä¸­è¼ƒå°è€…
             (*ntree).ASCI=ASCI_1;
         }
         else{
             (*ntree).ASCI=ASCI_2;
-            swap_LR(& ((*ntree).left),& ((*ntree).right));  //¸`ÂI½s¸¹¸û¤pªÌ¬°¥ª¤l¾ğ
+            swap_LR(& ((*ntree).left),& ((*ntree).right));  //ç¯€é»ç·¨è™Ÿè¼ƒå°è€…ç‚ºå·¦å­æ¨¹
         }
 
         (*ntree).adjust();
 
         trees.erase(trees.begin());
-        trees.at(0)=ntree;                                  //·s¾ğÂ\¦btrees¤¤³Ì«e
+        trees.at(0)=ntree;                                  //æ–°æ¨¹æ“ºåœ¨treesä¸­æœ€å‰
 
         Huff_sort(trees);
     }
-    int num=0;                                              //±q¾ğ«Ø¥ß½s½Xªí
+    int num=0;                                              //å¾æ¨¹å»ºç«‹ç·¨ç¢¼è¡¨
     Huff_list(codelist,num,"",trees[0]);
-    qsort(codelist,inputlist.size(),sizeof(string),list_cmp);//±Æ§Ç½s½Xªí
+    qsort(codelist,inputlist.size(),sizeof(string),list_cmp);//æ’åºç·¨ç¢¼è¡¨
     return trees[0];
 }
 
-void swap_LR(NODE** left,NODE** right){                     //left «ü¦V ­ì«ü¦V­ì¥ª¤l¾ğ¸`ÂI right «ü¦V ­ì«ü¦V­ì¥k¤l¾ğ¸`ÂI
-    NODE* temp;                                             //temp¼È¦s¸`ÂI«ü¦V
+void swap_LR(NODE** left,NODE** right){                     //left æŒ‡å‘ åŸæŒ‡å‘åŸå·¦å­æ¨¹ç¯€é» right æŒ‡å‘ åŸæŒ‡å‘åŸå³å­æ¨¹ç¯€é»
+    NODE* temp;                                             //tempæš«å­˜ç¯€é»æŒ‡å‘
     temp=(*left);
     (*left)=(*right);
     (*right)=temp;
 }
 
-void Huff_sort(vector<NODE*>& trees){                       //§â·s¾ğ´¡¤Jtrees¤¤¥¿½T¦ì¸m trees¦shuffman¾ğ¤Î¸`ÂI
-    int pos;                                                //pos¬°§PÂ_¤¤treesªº¦ì¸m
-    int t_freq=(*(trees[0])).freq;                          //t_freq¼È¦s·s¾ğªºÀW²v
-    unsigned char t_ASCI=(*(trees[0])).ASCI;                //t_ASCIºû·s¾ğÀW²v
+void Huff_sort(vector<NODE*>& trees){                       //æŠŠæ–°æ¨¹æ’å…¥treesä¸­æ­£ç¢ºä½ç½® treeså­˜huffmanæ¨¹åŠç¯€é»
+    int pos;                                                //posç‚ºåˆ¤æ–·ä¸­treesçš„ä½ç½®
+    int t_freq=(*(trees[0])).freq;                          //t_freqæš«å­˜æ–°æ¨¹çš„é »ç‡
+    unsigned char t_ASCI=(*(trees[0])).ASCI;                //t_ASCIç¶­æ–°æ¨¹é »ç‡
     for(pos=1 ; pos<trees.size() ; pos++){
         if (t_freq < (*(trees[pos])).freq )
             break;
@@ -246,14 +246,14 @@ void Huff_sort(vector<NODE*>& trees){                       //§â·s¾ğ´¡¤Jtrees¤¤¥
     trees.erase(trees.begin());
 }
 
-int Huff_list(string* codelist,int& num,string code,NODE* root){//«Ø¥ß½s½Xªí codelist¬°½s½Xªí num¬°½s½X²Õ¼Æ code½s½X root«ü¦V³B²z¸`ÂI
+int Huff_list(string* codelist,int& num,string code,NODE* root){//å»ºç«‹ç·¨ç¢¼è¡¨ codelistç‚ºç·¨ç¢¼è¡¨ numç‚ºç·¨ç¢¼çµ„æ•¸ codeç·¨ç¢¼ rootæŒ‡å‘è™•ç†ç¯€é»
     if (root){
 
-        int i,j;                                                //©¹¥ª¥k¤l¾ğ½s½X i,j¬Ò¬°0ªí¸`ÂI¥½ºİ
+        int i,j;                                                //å¾€å·¦å³å­æ¨¹ç·¨ç¢¼ i,jçš†ç‚º0è¡¨ç¯€é»æœ«ç«¯
         i = Huff_list(codelist,num,code+"0",(*root).left) ;
         j = Huff_list(codelist,num,code+"1",(*root).right) ;
         if  (i==0 && j==0){
-            string thecode;                                     //thecode ¦s¦r¤¸½s¸¹¤Î½s½X ¥[¤J½s½Xªí
+            string thecode;                                     //thecode å­˜å­—å…ƒç·¨è™ŸåŠç·¨ç¢¼ åŠ å…¥ç·¨ç¢¼è¡¨
             thecode+=(*root).ASCI;
             thecode+= code;
             codelist[num]=thecode;
@@ -266,16 +266,16 @@ int Huff_list(string* codelist,int& num,string code,NODE* root){//«Ø¥ß½s½Xªí cod
     return 2;
 }
 
-int list_cmp (const void * a, const void * b){//±Æ§Ç½s½Xªí¥Î
+int list_cmp (const void * a, const void * b){//æ’åºç·¨ç¢¼è¡¨ç”¨
   return (int)((*(string*)a)[0] - (*(string*) b)[0]);
 }
 
 int compression(const string* codelist,const int list_size,fstream& in,string& out_file){
-            //À£ÁY codelist½s½Xªí list_size½s½Xªí¤j¤p in¿é¤JÀÉ out¿é¥XÀÉ
-    string file_code;                                       //file_code ¼È¦s¿é¤JÂà´«½s½X
-    int bits=0;                                             //bits ¦sÀÉ®×½s½Xbit¼Æ
-    char target_char=0;                                     //target_char ¼È¦s¿é¤J¦r¤¸
-    unsigned char out_char=0;                               //out_char ¼È¦s¿é¥X¦r¤¸
+            //å£“ç¸® codelistç·¨ç¢¼è¡¨ list_sizeç·¨ç¢¼è¡¨å¤§å° inè¼¸å…¥æª” outè¼¸å‡ºæª”
+    string file_code;                                       //file_code æš«å­˜è¼¸å…¥è½‰æ›ç·¨ç¢¼
+    int bits=0;                                             //bits å­˜æª”æ¡ˆç·¨ç¢¼bitæ•¸
+    char target_char=0;                                     //target_char æš«å­˜è¼¸å…¥å­—å…ƒ
+    unsigned char out_char=0;                               //out_char æš«å­˜è¼¸å‡ºå­—å…ƒ
 
     while(!in.eof() && in.get(target_char) ){
         for(int i=0 ; i<list_size ; i++){
@@ -291,40 +291,40 @@ int compression(const string* codelist,const int list_size,fstream& in,string& o
             }
         }
     }
-    for(int code_pos=0,i=0;code_pos<file_code.length();code_pos++,i++){//code_pos ¥Ø«e³B²zfile_code¦ì¸m iÂà¦r¤¸¶iµ{
+    for(int code_pos=0,i=0;code_pos<file_code.length();code_pos++,i++){//code_pos ç›®å‰è™•ç†file_codeä½ç½® iè½‰å­—å…ƒé€²ç¨‹
         out_char += (int)(file_code[code_pos]-'0') * pow(2,7-i);
-        if(i==7){                                                      //¨C8bit¤@¦r¤¸ ¼g¤Jout_file
+        if(i==7){                                                      //æ¯8bitä¸€å­—å…ƒ å¯«å…¥out_file
             out_file += out_char;
             out_char=0;
             i=-1;
         }
-        else if(code_pos==file_code.length()-1){                        //³Ñ¾lbit ¼g¤Jout_file
+        else if(code_pos==file_code.length()-1){                        //å‰©é¤˜bit å¯«å…¥out_file
             out_file += out_char;
         }
     }
     return bits;
 }
 
-/*---------------------------------------À£ÁY--------------------------------------*/
-void burn(NODE* root){                                  //root±ı§R°£«ü¦V¸`ÂI
+/*---------------------------------------å£“ç¸®--------------------------------------*/
+void burn(NODE* root){                                  //rootæ¬²åˆªé™¤æŒ‡å‘ç¯€é»
     if(root){
         burn((*root).left);
         burn((*root).right);
         delete root;
     }
 }
-/*---------------------------------------¸ÑÀ£ÁY--------------------------------------*/
-void U(fstream& in,fstream& out){                                       //in¬°¿é¤JÀÉ out¿é¥XÀÉ
-    int bits;                                                           //bits¦s¸ÑÀ£½s½Xbit¼Æ
-    char trash;                                                         //trash¼È¦sÅª¤J¦r¤¸
-    int target_ASCI=256;                                                //target_ASCI¼È¦sÅª¤J¦r¤¸½s¸¹
+/*---------------------------------------è§£å£“ç¸®--------------------------------------*/
+void U(fstream& in,fstream& out){                                       //inç‚ºè¼¸å…¥æª” outè¼¸å‡ºæª”
+    int bits;                                                           //bitså­˜è§£å£“ç·¨ç¢¼bitæ•¸
+    char trash;                                                         //trashæš«å­˜è®€å…¥å­—å…ƒ
+    int target_ASCI=256;                                                //target_ASCIæš«å­˜è®€å…¥å­—å…ƒç·¨è™Ÿ
     in >> bits;
     if(! in >> bits){
         cout << "error int"<<endl;
         return;
     }
-    NODE* tree=new NODE;                                                //tree«ü¦Vhuffman¾ğ
-    NODE* temp_root=tree;                                               //temp_root«ü¦V±ı³B²z¸`ÂI
+    NODE* tree=new NODE;                                                //treeæŒ‡å‘huffmanæ¨¹
+    NODE* temp_root=tree;                                               //temp_rootæŒ‡å‘æ¬²è™•ç†ç¯€é»
     while(!in.eof() && in.get(trash)){
         if (trash == '='){
             if(target_ASCI<256)
@@ -353,9 +353,9 @@ void U(fstream& in,fstream& out){                                       //in¬°¿é
     burn(tree);
 }
 
-void build_tree_path(NODE** r_root,char i){                             //r_root«ü¦V «ü¦V±ı­×§ï¸`ÂI i§PÂ_¾Ş§@
-    NODE** p_root;                                                      //p_root«ü¦V «ü¦V·s«Ø¸`ÂI
-    NODE* root=(*r_root);                                               //root «ü¦V±ı­×§ï¸`ÂI
+void build_tree_path(NODE** r_root,char i){                             //r_rootæŒ‡å‘ æŒ‡å‘æ¬²ä¿®æ”¹ç¯€é» iåˆ¤æ–·æ“ä½œ
+    NODE** p_root;                                                      //p_rootæŒ‡å‘ æŒ‡å‘æ–°å»ºç¯€é»
+    NODE* root=(*r_root);                                               //root æŒ‡å‘æ¬²ä¿®æ”¹ç¯€é»
     if(i=='0'){
         p_root=&((*root).left);
         root=*p_root;
@@ -375,20 +375,20 @@ void build_tree_path(NODE** r_root,char i){                             //r_root
     }
 }
 
-void build_tree_edge(NODE* root,int i){                                 //root«ü¦V¥Ø¼Ğ¸`ÂI i¬°¥Ø¼Ğ¦r¤¸½s¸¹
+void build_tree_edge(NODE* root,int i){                                 //rootæŒ‡å‘ç›®æ¨™ç¯€é» iç‚ºç›®æ¨™å­—å…ƒç·¨è™Ÿ
     if(i>=0 && i<256 )
         (*root).ASCI=i;
     else
         cout << "ASCI error" << i << endl;
 }
 
-void Decompression(NODE* tree,fstream& in,fstream& out,int bits){       //in¬°¿é¤JÀÉ out¬°¿é¥XÀÉ bits¬°¿é¤J½s½Xbit¼Æ
+void Decompression(NODE* tree,fstream& in,fstream& out,int bits){       //inç‚ºè¼¸å…¥æª” outç‚ºè¼¸å‡ºæª” bitsç‚ºè¼¸å…¥ç·¨ç¢¼bitæ•¸
     if(in && out && tree){
-        char trash;                                                     //trash ¼È¦s¿é¤J¦r¤¸
-        string code;                                                    //code ¼È¦sÁÙ­ì½s½X
+        char trash;                                                     //trash æš«å­˜è¼¸å…¥å­—å…ƒ
+        string code;                                                    //code æš«å­˜é‚„åŸç·¨ç¢¼
 
         while(!in.eof() && in.get(trash)){
-            int codeing=(unsigned char)trash;                           //codeing ³B²z¿é¤J¥Î
+            int codeing=(unsigned char)trash;                           //codeing è™•ç†è¼¸å…¥ç”¨
 
             for(int i=0;i<8;i++){
                 if(codeing>=pow(2,7-i)){
@@ -400,8 +400,8 @@ void Decompression(NODE* tree,fstream& in,fstream& out,int bits){       //in¬°¿é
             }
         }
 
-        NODE* temp_root=tree;                                           //temp_root¼È¦s¥Ø«e§ä¨ì¸`ÂI¦ì¸m
-        int output;                                                     //output¦s¾ğ¤¤§ä¨ìªº¦r¤¸½s¸¹
+        NODE* temp_root=tree;                                           //temp_rootæš«å­˜ç›®å‰æ‰¾åˆ°ç¯€é»ä½ç½®
+        int output;                                                     //outputå­˜æ¨¹ä¸­æ‰¾åˆ°çš„å­—å…ƒç·¨è™Ÿ
         for(int doing_bit=0 ; doing_bit < bits ; doing_bit++){
             output=char_search(&temp_root,code[doing_bit]);
             if(output>=0 && output <256){
@@ -412,8 +412,8 @@ void Decompression(NODE* tree,fstream& in,fstream& out,int bits){       //in¬°¿é
     }
 }
 
-int char_search(NODE** r_root,char code_bit){                           //r_root«ü¦V «ü¦V±ı§ä¸`ÂI code_bit§PÂ_¾Ş§@
-    NODE* root=(*r_root);                                               //root «ü¦V±ı§ä¸`ÂI
+int char_search(NODE** r_root,char code_bit){                           //r_rootæŒ‡å‘ æŒ‡å‘æ¬²æ‰¾ç¯€é» code_bitåˆ¤æ–·æ“ä½œ
+    NODE* root=(*r_root);                                               //root æŒ‡å‘æ¬²æ‰¾ç¯€é»
 
     if(root){
         if(code_bit=='0')
@@ -440,4 +440,4 @@ int char_search(NODE** r_root,char code_bit){                           //r_root
     }
     return 256;
 }
-/*---------------------------------------¸ÑÀ£ÁY--------------------------------------*/
+/*---------------------------------------è§£å£“ç¸®--------------------------------------*/
