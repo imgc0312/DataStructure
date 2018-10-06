@@ -1,34 +1,34 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <ctime>
 #include <cstdlib>
 #include <algorithm>
 using namespace std;
-//B043040044 ¸ê°T¤uµ{108¯Å §d«TÊã 2016//
-//§@·~
+//B043040044 è³‡è¨Šå·¥ç¨‹108ç´š å³ä¿Šå¿» 2016//
+//ä½œæ¥­
 
-clock_t start;                               //start ¼È¦s¨C¦¸sort¶}©l®É¶¡¥Î
+clock_t start;                               //start æš«å­˜æ¯æ¬¡sorté–‹å§‹æ™‚é–“ç”¨
 void Swap(int& A,int& B);
-void Dcopy(int* output,int* input ,int Size);//½Æ»sinput ©ó output Size¬°°}¦C¤j¤p
-void write(fstream& file,int* input,int Size);//±Ninput ¼g¤Jfile Size¬°°}¦C¤j¤p
-void showTime(int Case,double time);          //¦bµøµ¡¤WÅã¥Ü¤º®e
+void Dcopy(int* output,int* input ,int Size);//è¤‡è£½input æ–¼ output Sizeç‚ºé™£åˆ—å¤§å°
+void write(fstream& file,int* input,int Size);//å°‡input å¯«å…¥file Sizeç‚ºé™£åˆ—å¤§å°
+void showTime(int Case,double time);          //åœ¨è¦–çª—ä¸Šé¡¯ç¤ºå…§å®¹
 
-double selection_sort(int* input,int Size);//¿ï¾Ü±Æ§Çªk ¹ïinput°}¦C±Æ§Ç Size¬°°}¦C¤j¤p
-double heap_sort(int* input,int Size);//°ï±Æ§Çªk ¹ïinput°}¦C±Æ§Ç Size¬°°}¦C¤j¤p
-void heap_adjust(int* input,const int root,const int Size);//°ï±Æ§Ç¥Î
-double quick_sort(int* input,const int left,const int right);//¿ï¾Ü±Æ§Çªk ¹ïinput°}¦C±Æ§Ç Size¬°°}¦C¤j¤p
-int compare (const void * a, const void * b);//qsort¥Î
+double selection_sort(int* input,int Size);//é¸æ“‡æ’åºæ³• å°inputé™£åˆ—æ’åº Sizeç‚ºé™£åˆ—å¤§å°
+double heap_sort(int* input,int Size);//å †æ’åºæ³• å°inputé™£åˆ—æ’åº Sizeç‚ºé™£åˆ—å¤§å°
+void heap_adjust(int* input,const int root,const int Size);//å †æ’åºç”¨
+double quick_sort(int* input,const int left,const int right);//é¸æ“‡æ’åºæ³• å°inputé™£åˆ—æ’åº Sizeç‚ºé™£åˆ—å¤§å°
+int compare (const void * a, const void * b);//qsortç”¨
 
 int main(){
-    int N=0;                                        //N¬°¸ê®Æ¶q inputÀÉ¤¤²Ä¤@²Õ¼Æ¾Ú
+    int N=0;                                        //Nç‚ºè³‡æ–™é‡ inputæª”ä¸­ç¬¬ä¸€çµ„æ•¸æ“š
     cin >> N;
-    int* data=new int[N+1];                         //data¬°±ı±Æ§Ç¸ê®Æ°}¦C ±N¿é¤J¦s©ó1~N
+    int* data=new int[N+1];                         //dataç‚ºæ¬²æ’åºè³‡æ–™é™£åˆ— å°‡è¼¸å…¥å­˜æ–¼1~N
     for(int i=1;i<=N;i++){
         cin >> data[i];
     }
-    int* temp=new int[N+1];                         //temp½Æ»sdata¤º®e¶i¦æ±Æ§Ç
-    fstream file;                                   //file¬°¿é¥X±Æ§Çµ²ªG¥ÎÀÉ®×«ü¼Ğ
-    double time=0;                                  //time¼È¦s ¶O®Éªø -1ªí¶W¥X®É¶¡­­¨î5min/300000ms
+    int* temp=new int[N+1];                         //tempè¤‡è£½dataå…§å®¹é€²è¡Œæ’åº
+    fstream file;                                   //fileç‚ºè¼¸å‡ºæ’åºçµæœç”¨æª”æ¡ˆæŒ‡æ¨™
+    double time=0;                                  //timeæš«å­˜ è²»æ™‚é•· -1è¡¨è¶…å‡ºæ™‚é–“é™åˆ¶5min/300000ms
     for (int i=0;i<5;i++){
         switch(i){
             case 0:                                 //i=0 selection sort
@@ -39,7 +39,7 @@ int main(){
                 start=clock();
                 time=selection_sort(temp,N);
 
-                cout << "¸ê®Æ¶q:" << N << endl;
+                cout << "è³‡æ–™é‡:" << N << endl;
                 showTime(i,time);
                 write(file,temp,N);
                 file.close();
@@ -52,7 +52,7 @@ int main(){
                 start=clock();
                 time=heap_sort(temp,N);
 
-                cout << "¸ê®Æ¶q:" << N << endl;
+                cout << "è³‡æ–™é‡:" << N << endl;
                 showTime(i,time);
                 write(file,temp,N);
                 file.close();
@@ -65,7 +65,7 @@ int main(){
                 start=clock();
                 time=quick_sort(temp,1,N);
 
-                cout << "¸ê®Æ¶q:" << N << endl;
+                cout << "è³‡æ–™é‡:" << N << endl;
                 showTime(i,time);
                 write(file,temp,N);
                 file.close();
@@ -78,7 +78,7 @@ int main(){
                 start=clock();
                 qsort(&(temp[1]),N,sizeof(int),compare);
                 time=(double)(clock()-start);
-                cout << "¸ê®Æ¶q:" << N << endl;
+                cout << "è³‡æ–™é‡:" << N << endl;
                 showTime(i,time);
                 write(file,temp,N);
                 file.close();
@@ -91,7 +91,7 @@ int main(){
                 start=clock();
                 sort(&(temp[1]),&(temp[N+1]));
                 time=(double)(clock()-start);
-                cout << "¸ê®Æ¶q:" << N << endl;
+                cout << "è³‡æ–™é‡:" << N << endl;
                 showTime(i,time);
                 write(file,temp,N);
                 file.close();
@@ -103,49 +103,49 @@ int main(){
     return 0;
 }
 
-void Swap(int& A,int& B){                           //¥æ´«A©MB
+void Swap(int& A,int& B){                           //äº¤æ›Aå’ŒB
     int Temp= A;
     A=B;
     B=Temp;
 }
-void Dcopy(int* output,int* input ,int Size){       //½Æ»sinput°}¦C¤º®e¨ìoutput°}¦C Size¬°°}¦C¹ê»Ú¥iÀx¦sªÅ¶¡¤j¤p
+void Dcopy(int* output,int* input ,int Size){       //è¤‡è£½inputé™£åˆ—å…§å®¹åˆ°outputé™£åˆ— Sizeç‚ºé™£åˆ—å¯¦éš›å¯å„²å­˜ç©ºé–“å¤§å°
     for(int i=0;i<=Size;i++){
         output[i]=input[i];
     }
 }
-void write(fstream& file,int* input,int Size){      //§â±Æ§Ç§¹ªºinput°}¦Cªº1~Size®æ¤º®e¼g¤Jfile
+void write(fstream& file,int* input,int Size){      //æŠŠæ’åºå®Œçš„inputé™£åˆ—çš„1~Sizeæ ¼å…§å®¹å¯«å…¥file
     for(int i=1;i<=Size;i++){
         file << input[i] << endl;
     }
 }
-void showTime(int Case,double time){                //µøµ¡Åã¥Üµ²ªG¥Î time¬°¶O®É(ms)
+void showTime(int Case,double time){                //è¦–çª—é¡¯ç¤ºçµæœç”¨ timeç‚ºè²»æ™‚(ms)
     switch(Case){
         case 0:
-            cout << "¤èªk: A: selection sort" << endl;
+            cout << "æ–¹æ³•: A: selection sort" << endl;
             break;
         case 1:
-            cout << "¤èªk: B: heap sort" << endl;
+            cout << "æ–¹æ³•: B: heap sort" << endl;
             break;
         case 2:
-            cout << "¤èªk: C: quick sort" << endl;
+            cout << "æ–¹æ³•: C: quick sort" << endl;
             break;
         case 3:
-            cout << "¤èªk: D: qsort( )" << endl;
+            cout << "æ–¹æ³•: D: qsort( )" << endl;
             break;
         case 4:
-            cout << "¤èªk: E: (STL) sort( )" << endl;
+            cout << "æ–¹æ³•: E: (STL) sort( )" << endl;
             break;
     }
     if (time<0)
-        cout << "¶O®É: Time Limit Exceeds" << endl;
+        cout << "è²»æ™‚: Time Limit Exceeds" << endl;
     else
-        cout << "¶O®É: " << time/1000 << endl;
+        cout << "è²»æ™‚: " << time/1000 << endl;
 }
 
-double selection_sort(int* input,int Size){         //input¬°±ı±Æ§Ç°}¦C Size¬°¸ê®Æ¶q
+double selection_sort(int* input,int Size){         //inputç‚ºæ¬²æ’åºé™£åˆ— Sizeç‚ºè³‡æ–™é‡
     for(int i=1;i<=Size;i++){
-        int j=i;                                    //i¦s¤w±Æ§Ç»P¥¼±Æ§Ç¤À¬É
-        for(int k=i+1;k<=Size;k++){                 //j¦s«İ±Æ§Ç¸ê®Æ³Ì¤pªÌ¦ì¸m
+        int j=i;                                    //iå­˜å·²æ’åºèˆ‡æœªæ’åºåˆ†ç•Œ
+        for(int k=i+1;k<=Size;k++){                 //jå­˜å¾…æ’åºè³‡æ–™æœ€å°è€…ä½ç½®
             if(input[k]<input[j])
                 j=k;
         }
@@ -156,14 +156,14 @@ double selection_sort(int* input,int Size){         //input¬°±ı±Æ§Ç°}¦C Size¬°¸ê
     return (double)(clock()-start);
 }
 
-double heap_sort(int* input,int Size){              //input¬°±ı±Æ§Ç°}¦C Size¬°¸ê®Æ¶q
-    for(int i=Size/2;i>=1;i--){                     //i¦s¦ì¸m¨C¦¸°ï­«¾ãªº°_©l¦ì¸m
+double heap_sort(int* input,int Size){              //inputç‚ºæ¬²æ’åºé™£åˆ— Sizeç‚ºè³‡æ–™é‡
+    for(int i=Size/2;i>=1;i--){                     //iå­˜ä½ç½®æ¯æ¬¡å †é‡æ•´çš„èµ·å§‹ä½ç½®
         heap_adjust(input,i,Size);
         if((double)(clock()-start)>300000)
             return -1;
     }
 
-    for(int i=Size;i>=1;i--){                       //i¦s¦ì¸m³Ì¤p­È¦ì¸m(¥½ºİ)
+    for(int i=Size;i>=1;i--){                       //iå­˜ä½ç½®æœ€å°å€¼ä½ç½®(æœ«ç«¯)
         Swap(input[1],input[i]);
         heap_adjust(input,1,i-1);
         if((double)(clock()-start)>300000)
@@ -172,7 +172,7 @@ double heap_sort(int* input,int Size){              //input¬°±ı±Æ§Ç°}¦C Size¬°¸ê
 
     return (double)(clock()-start);
 }
-void heap_adjust(int* input,const int root,const int Size){//input¬°±ı±Æ§Ç°}¦C root¬°°ï­«¾ã°_©l¦ì¸m Size¬°¸ê®Æ¶q
+void heap_adjust(int* input,const int root,const int Size){//inputç‚ºæ¬²æ’åºé™£åˆ— rootç‚ºå †é‡æ•´èµ·å§‹ä½ç½® Sizeç‚ºè³‡æ–™é‡
     int Temp=input[root];
     int i;
     for(i=2*root;i<=Size;i*=2){
@@ -185,7 +185,7 @@ void heap_adjust(int* input,const int root,const int Size){//input¬°±ı±Æ§Ç°}¦C r
     input[i/2]=Temp;
 }
 
-double quick_sort(int* input,const int left,const int right){//input¬°±ı±Æ§Ç°}¦C left¬°¸ê®Æ¸s³Ì¥ª¦ì¸m right¬°¸ê®Æ¸s³Ì¥k¦ì¸m
+double quick_sort(int* input,const int left,const int right){//inputç‚ºæ¬²æ’åºé™£åˆ— leftç‚ºè³‡æ–™ç¾¤æœ€å·¦ä½ç½® rightç‚ºè³‡æ–™ç¾¤æœ€å³ä½ç½®
     if(left < right){
         int i= left;
         int j= right +1;
@@ -209,6 +209,6 @@ double quick_sort(int* input,const int left,const int right){//input¬°±ı±Æ§Ç°}¦C
     return (double)(clock()-start);
 }
 
-int compare (const void * a, const void * b){//qsort¥Î
+int compare (const void * a, const void * b){//qsortç”¨
   return ( *(int*)a - *(int*)b );
 }
