@@ -6,7 +6,7 @@
 #include <cmath>
 #include <ctime>
 using namespace std;
-// 吳俊忻 B043040044
+// GC B043040044
 // 2017/01/07
 // 作業8  huffman
 struct ASCIfreq{                                    //ASCIfreq 存特定字元頻率
