@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <algorithm>
 using namespace std;
-//B043040044 資訊工程108級 吳俊忻 2016//
+//B043040044 GC 2016//
 //作業
 
 clock_t start;                               //start 暫存每次sort開始時間用
